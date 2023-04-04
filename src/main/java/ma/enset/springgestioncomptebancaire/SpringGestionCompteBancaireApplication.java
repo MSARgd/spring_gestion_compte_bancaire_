@@ -1,7 +1,7 @@
 package ma.enset.springgestioncomptebancaire;
 
 import ma.enset.springgestioncomptebancaire.entity.Compte;
-import ma.enset.springgestioncomptebancaire.entity.TypeCompte;
+import ma.enset.springgestioncomptebancaire.entity.enumes.TypeCompte;
 import ma.enset.springgestioncomptebancaire.repository.CompteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -14,24 +14,20 @@ import java.util.*;
 public class SpringGestionCompteBancaireApplication implements CommandLineRunner {
 	@Autowired
 	CompteRepository compteRepository;
-
 	public static void main(String[] args) {
 		SpringApplication.run(SpringGestionCompteBancaireApplication.class, args);
 	}
-
-
 	@Override
 	public void run(String... args) throws Exception {
 		//====================================================
 		for(int i=0;i<10;i++){
-
-			String randomAcountNumber =   java.util.UUID.randomUUID().toString().substring(0, 20);
+			String randomAcountNumber =   UUID.randomUUID().toString().substring(0, 20);
 			compteRepository.save(new Compte((long) i, (long) i,
 					TypeCompte.values()[new Random().nextInt(TypeCompte.values().length)],
 					new Date((long) (Math.random() * System.currentTimeMillis())),
 					new Date((long) (Math.random() * System.currentTimeMillis())),
 					new Date((long) (Math.random() * System.currentTimeMillis())),
-					new Random().nextBoolean(),randomAcountNumber
+					new Random().nextBoolean(),randomAcountNumber,new Random().nextDouble(Math.pow(10,10))
 			));
 		}
 		//=====================================================

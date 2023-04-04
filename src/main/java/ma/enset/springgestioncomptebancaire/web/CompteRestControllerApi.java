@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -13,30 +14,43 @@ import java.util.List;
 public class CompteRestControllerApi {
     @Autowired
     CompteRepository compteRepository;
-    @GetMapping(path = "/comptes/{id}",produces = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE})
-    private Compte getCompte(@PathVariable("id") Long id){
+    public CompteRestControllerApi(CompteRepository compteRepository) {
+        this.compteRepository = compteRepository;
+    }
+   /* @GetMapping("/comptes/{id}")
+    public Compte getCompte(@PathVariable Long id) {
+        return compteRepository.findById(id).orElseThrow(()-> new RuntimeException(String.format("Acount %s not found",id)));
+    } */
+    @GetMapping( "/comptes/{id}")
+    private Compte getCompte(@PathVariable Long id){
         return compteRepository.findCompteByUserId(id);
     }
-    @GetMapping(path="/comptes",produces = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE})
-    private List<Compte> getAllComptes(){
+    @GetMapping("/comptes")
+    public List<Compte> getAllComptes(){
         return compteRepository.findAll();
     }
     @PostMapping("/comptes/{compte}")
-    private Compte save(@RequestBody Compte compte){
+    public Compte saveCompte(@RequestBody Compte compte){
         return compteRepository.save(compte);
     }
     @PutMapping("/comptes/{id}")
-    private Compte update(@RequestBody Compte compte,@PathVariable("id") Long id){
-        compte.setId(id);
-        return compteRepository.save(compte);
+    public  Compte updateCompte(@RequestBody Compte compte,@PathVariable Long id){
+        Compte updatedCompte =  compteRepository.findById(id).get();
+        if(compte.getUserId() != null) updatedCompte.setUserId(compte.getUserId());
+        if(compte.getTypeCompte()!=null) updatedCompte.setTypeCompte(compte.getTypeCompte());
+        if(compte.getCreatedAt()!=null) updatedCompte.setUpdatedAt(compte.getUpdatedAt());
+        if(compte.getUpdatedAt()!=null) updatedCompte.setUpdatedAt(new Date());
+        if(compte.getEndValidity()!=null) updatedCompte.setEndValidity(compte.getEndValidity());
+        if(compte.getAccountNumber()!=null) updatedCompte.setAccountNumber(compte.getAccountNumber());
+        if(compte.getSolde()!=null) updatedCompte.setSolde(compte.getSolde());
+        return compteRepository.save(updatedCompte);
     }
     @DeleteMapping("/comptes/{id}")
-    private void delete(@PathVariable Long id){
+    public void deleteCompte(@PathVariable Long id){
         compteRepository.deleteById(id);
     }
-    @GetMapping("/comptes/{isActive}")
-    private List<Compte> getComptesByStatus(@PathVariable Boolean isActive){
-        return compteRepository.searchCompteByStatus(isActive);
-    }
-
+//    @GetMapping("/comptes/{isActive}")
+//    public List<Compte> getComptesByStatus(@PathVariable Boolean isActive){
+//        return compteRepository.searchCompteByStatus(isActive);
+//    }
 }
