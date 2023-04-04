@@ -22,11 +22,9 @@
         </div>
       </div>
     <hr>
-
-
       <div class="container">
         <div class="text-container">
-            <h2 id="#h2">Test on H2</h2>
+            <h2 id="h2">Test on H2</h2>
         </div>
       </div>
       <div class="container">
@@ -35,5 +33,6 @@
         </div>
       </div>
     <hr>
+
 </body>
 </html>
