@@ -3,6 +3,7 @@ package ma.enset.springgestioncomptebancaire.web;
 import ma.enset.springgestioncomptebancaire.dto.CompteRequestDTO;
 import ma.enset.springgestioncomptebancaire.dto.CompteResponseDTO;
 import ma.enset.springgestioncomptebancaire.entity.Compte;
+import ma.enset.springgestioncomptebancaire.mapper.CompteMapperImpl;
 import ma.enset.springgestioncomptebancaire.repository.CompteRepository;
 import ma.enset.springgestioncomptebancaire.service.CompteServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,8 @@ public class CompteRestControllerApi {
     CompteRepository compteRepository;
     @Autowired
     CompteServiceImpl compteService;
+    @Autowired
+    CompteMapperImpl compteMapper;
     public CompteRestControllerApi(CompteRepository compteRepository) {
         this.compteRepository = compteRepository;
     }
