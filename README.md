@@ -8,10 +8,9 @@
     <hr>
     <h2>Table of Contents</h2>
     <ul>
-        <li><a href="#description">Description</a></li>
-        <li><a href="#h2">Test on H2 </a></li>
+        <li><a href="description">Description</a></li>
+        <li><a href="h2">Test on H2 </a></li>
     </ul>
-
     <hr>
       <div class="container">
         <div class="text-container">
