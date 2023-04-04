@@ -7,7 +7,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
-
 public interface CompteRepository extends JpaRepository<Compte,Long> {
     Compte findCompteByUserId(Long id);
     @Query("select c from Compte c where c.isActive= :x")

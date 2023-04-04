@@ -1,7 +1,10 @@
 package ma.enset.springgestioncomptebancaire.web;
 
+import ma.enset.springgestioncomptebancaire.dto.CompteRequestDTO;
+import ma.enset.springgestioncomptebancaire.dto.CompteResponseDTO;
 import ma.enset.springgestioncomptebancaire.entity.Compte;
 import ma.enset.springgestioncomptebancaire.repository.CompteRepository;
+import ma.enset.springgestioncomptebancaire.service.CompteServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -10,10 +13,12 @@ import java.util.Date;
 import java.util.List;
 
 @RestController
-@RequestMapping("/banque")
+@RequestMapping("/api")
 public class CompteRestControllerApi {
     @Autowired
     CompteRepository compteRepository;
+    @Autowired
+    CompteServiceImpl compteService;
     public CompteRestControllerApi(CompteRepository compteRepository) {
         this.compteRepository = compteRepository;
     }
@@ -29,9 +34,9 @@ public class CompteRestControllerApi {
     public List<Compte> getAllComptes(){
         return compteRepository.findAll();
     }
-    @PostMapping("/comptes/{compte}")
-    public Compte saveCompte(@RequestBody Compte compte){
-        return compteRepository.save(compte);
+    @PostMapping("/comptes")
+    public CompteResponseDTO saveCompte(@RequestBody CompteRequestDTO compteRequestDTO){
+        return compteService.addCompte(compteRequestDTO);
     }
     @PutMapping("/comptes/{id}")
     public  Compte updateCompte(@RequestBody Compte compte,@PathVariable Long id){

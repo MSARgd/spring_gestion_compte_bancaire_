@@ -27,7 +27,9 @@ public class SpringGestionCompteBancaireApplication implements CommandLineRunner
 					new Date((long) (Math.random() * System.currentTimeMillis())),
 					new Date((long) (Math.random() * System.currentTimeMillis())),
 					new Date((long) (Math.random() * System.currentTimeMillis())),
-					new Random().nextBoolean(),randomAcountNumber,new Random().nextDouble(Math.pow(10,10))
+					new Random().nextBoolean(),randomAcountNumber,new Random().nextDouble(Math.pow(10,10)),
+					new Random().nextDouble(),"EUR"
+
 			));
 		}
 		//=====================================================

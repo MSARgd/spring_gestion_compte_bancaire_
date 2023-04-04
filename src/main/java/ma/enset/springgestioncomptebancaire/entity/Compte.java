@@ -22,4 +22,6 @@ public class Compte {
     private Boolean isActive;
     private String accountNumber;
     private Double solde;
+    private Double balance;
+    private String currency;
 }
