@@ -15,7 +15,7 @@ public class Compte {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long userId;
-    private String typeCompte;
+    private TypeCompte typeCompte;
     private Date createdAt;
     private Date updatedAt;
     private Date endValidity;
