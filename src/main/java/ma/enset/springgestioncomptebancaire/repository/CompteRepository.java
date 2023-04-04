@@ -11,6 +11,6 @@ import java.util.List;
 public interface CompteRepository extends JpaRepository<Compte,Long> {
     Compte findCompteByUserId(Long id);
     @Query("select c from Compte c where c.isActive= :x")
-    List<Compte> searchActiveCompte(@Param("x") Boolean b);
+    List<Compte> searchCompteByStatus(@Param("x") Boolean b);
 
 }

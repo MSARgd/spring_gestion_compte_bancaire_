@@ -47,13 +47,13 @@ public class SpringGestionCompteBancaireApplication implements CommandLineRunner
 		System.out.println(compteByUserId.toString());
 		//================================================
 		System.out.println("Les  Comptes Active  : ");
-		List<Compte> activeComptes = compteRepository.searchActiveCompte(true);
+		List<Compte> activeComptes = compteRepository.searchCompteByStatus(true);
 		activeComptes.forEach(c->{
 			System.out.println(c.toString());
 		});
 		//===============================================
 		System.out.println("Les  Comptes Non Active  : ");
-		List<Compte> nonActiveComptes = compteRepository.searchActiveCompte(false);
+		List<Compte> nonActiveComptes = compteRepository.searchCompteByStatus(false);
 		activeComptes.forEach(c->{
 			System.out.println(c.toString());
 		});
