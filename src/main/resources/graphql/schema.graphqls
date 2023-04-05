@@ -1,0 +1,23 @@
+type Query{
+    getCompte(id :ID) : Compte,
+    compteList : [Compte],
+    getCompteByClientId(id : ID) : Compte,
+
+
+}
+type Compte{
+    id : ID!,
+    userId : ID!,
+    typeCompte : TypeCompte,
+    createdAt : Float,
+    updatedAt : Float,
+    endValidity : Float,
+    isActive : Boolean,
+    accountNumber : String,
+    solde : Float,
+    balance : Float,
+    currency : String,
+}
+enum TypeCompte{
+    COURANT,EPAGRNE
+}
